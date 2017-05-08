@@ -97,7 +97,7 @@ app.get('/dataset/stream/graph', function(req, res){
 //Levanta el servidor cuando la BD este lista
 db.warmupEmmitter.once("warmup",() => {
   app.listen(8080, function(){
-    console.log("Listening on " + server_ip_address + ", server_port " + server_port)
+    
   });
    //console.log("Web server running on port 8000");
    //app.listen(8000);
