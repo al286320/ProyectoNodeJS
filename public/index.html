@@ -57,7 +57,7 @@
 	<script>
 	   $(document).ready(function(){
 	   $("#streamlist").append("<button id='NEW' class='btn btn-default'>+</button>");
-	   $.getJSON("http://localhost:8000/dataset").done(function(data){
+	   $.getJSON("/dataset").done(function(data){
 	   		$.each(data.result,function(indx,data){ addButton(data) });
 	   })
        //var streams=["felicidad","euforia"];
@@ -98,17 +98,17 @@
 	function actionButton(data){
 		//Draw components of the selected stream
 		var streamname=data.getAttribute("id");
-		$.getJSON("http://localhost:8000/dataset/"+ streamname +"/words").done(function(data){
+		$.getJSON("/dataset/"+ streamname +"/words").done(function(data){
 	   		update_cloud(data.result);
 	   })
 		//draw polatities
-		$.getJSON("http://localhost:8000/dataset/"+ streamname +"/polaridad").done(function(data){
+		$.getJSON("/dataset/"+ streamname +"/polaridad").done(function(data){
 	   		var demoninador = data.result.positive + data.result.negative
 	   		var polarity={"positive":data.result.positive/demoninador,"negative":data.result.negative/demoninador};
 	   		update_polar(polarity);
 	   		
 	   })
-		$.getJSON("http://localhost:8000/dataset/"+ streamname +"/geo").done(function(data){
+		$.getJSON("/dataset/"+ streamname +"/geo").done(function(data){
 	   		console.log(data.result);
 	   		puntos = {};
 	   		for (var i in data.result){
@@ -128,7 +128,7 @@
 		
 		update_pictures(streamname);
 
-		$.getJSON("http://localhost:8000/dataset/"+streamname+"?limit=5").done(function(data){
+		$.getJSON("/dataset/"+streamname+"?limit=5").done(function(data){
             $('#links').empty();
             for (var i in data.result){
                 console.log(data.result[i]);
